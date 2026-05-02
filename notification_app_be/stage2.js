@@ -1,20 +1,20 @@
 const axios = require("axios");
 const logger = require("../logging_middleware/logger");
 
-// 🔐 Paste your latest token here
+
 const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiYXVkIjoiaHR0cDovLzIwLjI0NC41Ni4xNDQvZXZhbHVhdGlvbi1zZXJ2aWNlIiwiZW1haWwiOiJhZDYwODFAc3JtaXN0LmVkdS5pbiIsImV4cCI6MTc3NzcwNTQ1MiwiaWF0IjoxNzc3NzA0NTUyLCJpc3MiOiJBZmZvcmQgTWVkaWNhbCBUZWNobm9sb2dpZXMgUHJpdmF0ZSBMaW1pdGVkIiwianRpIjoiYmIwMmI1YjgtZTJiNS00M2U3LWJjMDEtODgzYWQ2ZGJiMDczIiwibG9jYWxlIjoiZW4tSU4iLCJuYW1lIjoiYXNpZiB1bWFyIGJhYmEiLCJzdWIiOiJkMTY1ZmZkOC1jMGI1LTRjNGQtOTQ1YS00NTM1YTQ1ZjUwZDIifSwiZW1haWwiOiJhZDYwODFAc3JtaXN0LmVkdS5pbiIsIm5hbWUiOiJhc2lmIHVtYXIgYmFiYSIsInJvbGxObyI6InJhMjMxMTAwMzAxMTEzNCIsImFjY2Vzc0NvZGUiOiJRa2JweEgiLCJjbGllbnRJRCI6ImQxNjVmZmQ4LWMwYjUtNGM0ZC05NDVhLTQ1MzVhNDVmNTBkMiIsImNsaWVudFNlY3JldCI6IkZHYndQWmJIR2J1VHFEc3kifQ.tNi5S9q_cpRzpdzSCfODSSW7spv1eBwG2gvLUPkERgU";
 
 
 const API_URL = "http://20.207.122.201/evaluation-service/notifications";
 
-// Priority map
+
 const priority = {
   Placement: 3,
   Event: 2,
   Result: 1
 };
 
-// 🔥 Compare function
+
 function compare(a, b) {
   if (priority[a.Type] !== priority[b.Type]) {
     return priority[a.Type] - priority[b.Type]; // min heap (lowest first)
@@ -22,7 +22,7 @@ function compare(a, b) {
   return new Date(a.Timestamp) - new Date(b.Timestamp);
 }
 
-// 🔥 Min Heap class
+
 class MinHeap {
   constructor() {
     this.heap = [];
@@ -111,11 +111,11 @@ async function main() {
       heap.push(n);
 
       if (heap.size() > 10) {
-        heap.pop(); // remove lowest priority
+        heap.pop(); 
       }
     }
 
-    // Convert heap → sorted output (highest first)
+    
     const result = heap.heap.sort((a, b) => {
       if (priority[b.Type] !== priority[a.Type]) {
         return priority[b.Type] - priority[a.Type];
